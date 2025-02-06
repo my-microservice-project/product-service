@@ -1,0 +1,216 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Product Service",
+        "description": "Product API Documentation",
+        "contact": {
+            "email": "bugrabozkurtt@gmail.com"
+        },
+        "license": {
+            "name": "MIT",
+            "url": "https://opensource.org/licenses/MIT"
+        },
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/v1/products": {
+            "post": {
+                "tags": [
+                    "Product"
+                ],
+                "summary": "Create or Update Products",
+                "operationId": "950c326315ed6dd27d4e4e59413f4203",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "properties": {
+                                        "name": {
+                                            "type": "string",
+                                            "example": "iPhone 15 Pro"
+                                        },
+                                        "category": {
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "price": {
+                                            "type": "number",
+                                            "format": "float",
+                                            "example": 1299.99
+                                        },
+                                        "stock": {
+                                            "type": "integer",
+                                            "example": 50
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "202": {
+                        "description": "Products have been queued for processing."
+                    }
+                }
+            }
+        },
+        "/api/v1/products/search": {
+            "get": {
+                "tags": [
+                    "Product"
+                ],
+                "summary": "Search Products",
+                "operationId": "9d491d9a769ba3d2f650a1fd8f07f0f3",
+                "parameters": [
+                    {
+                        "name": "query",
+                        "in": "query",
+                        "description": "Performs a keyword search",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "category",
+                        "in": "query",
+                        "description": "Filter by Category ID",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "min_price",
+                        "in": "query",
+                        "description": "Filter by minimum price",
+                        "required": false,
+                        "schema": {
+                            "type": "number",
+                            "format": "float",
+                            "example": 1000
+                        }
+                    },
+                    {
+                        "name": "max_price",
+                        "in": "query",
+                        "description": "Filter by maximum price",
+                        "required": false,
+                        "schema": {
+                            "type": "number",
+                            "format": "float",
+                            "example": 5000
+                        }
+                    },
+                    {
+                        "name": "min_stock",
+                        "in": "query",
+                        "description": "Filter by minimum stock quantity",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "example": 10
+                        }
+                    },
+                    {
+                        "name": "max_stock",
+                        "in": "query",
+                        "description": "Filter by maximum stock quantity",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "example": 100
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Search results returned successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Search results retrieved successfully."
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/ProductDTO"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid search query"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "ProductDTO": {
+                "title": "Product Data Transfer Object",
+                "description": "Product information",
+                "properties": {
+                    "id": {
+                        "description": "Ürünün benzersiz kimliği, opsiyonel",
+                        "type": "integer",
+                        "example": 28,
+                        "nullable": true
+                    },
+                    "name": {
+                        "description": "Ürün adı. Eğer yoksa 'description' veya varsayılan değer kullanılır.",
+                        "type": "string",
+                        "example": "iPhone 15 Pro",
+                        "nullable": true
+                    },
+                    "description": {
+                        "description": "Ürünün açıklaması. Eğer 'name' yoksa bu değer kullanılabilir.",
+                        "type": "string",
+                        "example": "Apple'ın en son modeli",
+                        "nullable": true
+                    },
+                    "category": {
+                        "description": "Ürünün ait olduğu kategori ID'si",
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "price": {
+                        "description": "Ürünün fiyatı",
+                        "type": "number",
+                        "format": "float",
+                        "example": 1299.99
+                    },
+                    "stock": {
+                        "description": "Ürünün stok adedi",
+                        "type": "integer",
+                        "example": 50
+                    }
+                },
+                "type": "object"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Product",
+            "description": "Product"
+        }
+    ]
+}
