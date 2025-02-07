@@ -1,102 +1,56 @@
-# Product Service
+# User Service
 
-Bu servis, ürün yönetimi için geliştirilmiş bir mikroservistir. Laravel framework'ü kullanılarak geliştirilmiştir.
+Bu servis, kullanıcı kimlik doğrulama işlemlerini yönetmek için cache based tasarlanmış bir mikroservistir.
 
-## Gereksinimler
+## 🚀 Başlangıç
+
+### Gereksinimler
 
 - Docker
 - Docker Compose
+- Redis
 
-## Kurulum
+### Kurulum
 
 1. Projeyi klonlayın
-2. `.env.example` dosyasını `.env` olarak kopyalayın
-3. Docker container'larını başlatın:
-
 ```bash
-docker-compose up -d
+git clone https://github.com/my-microservice-project/user-service
 ```
 
-## Servisler
-
-Proje aşağıdaki servislerden oluşmaktadır:
-
-1. **Webserver (Nginx)**
-   - Port: 8080 (varsayılan, .env dosyasından değiştirilebilir)
-   - Nginx web sunucusu olarak çalışır
-
-2. **PHP-FPM**
-   - PHP 8.3 versiyonu
-   - Laravel uygulamasını çalıştırır
-
-3. **PostgreSQL**
-   - Port: 5432 (varsayılan, .env dosyasından değiştirilebilir)
-   - Veritabanı sunucusu
-   - Veriler `./data/postgresql_data` dizininde persist edilir
-
-4. **Supervisor**
-   - Queue worker'ları ve diğer arka plan işlemlerini yönetir
-
-## API Endpointleri
-
-### Ürün İşlemleri (v1)
-
-#### 1. Ürün Oluşturma
-- **Endpoint:** `POST /api/v1/products`
-- **Açıklama:** Yeni bir ürün oluşturur
-- **İstek Gövdesi:**
-  ```json
-  {
-    "name": "Ürün Adı",
-    "description": "Ürün Açıklaması",
-    "price": 99.99,
-    "stock": 100
-  }
-  ```
-
-#### 2. Ürün Arama
-- **Endpoint:** `GET /api/v1/products/search`
-- **Açıklama:** Ürünleri arar ve filtreler
-- **Query Parametreleri:**
-  - `q`: Arama terimi
-  - `min_price`: Minimum fiyat
-  - `max_price`: Maksimum fiyat
-  - `sort`: Sıralama kriteri (price_asc, price_desc, name_asc, name_desc)
-  - `page`: Sayfa numarası
-  - `per_page`: Sayfa başına ürün sayısı
-
-## Veritabanı Yapılandırması
-
-PostgreSQL veritabanı aşağıdaki bilgilerle yapılandırılmıştır:
-
-- Database: `${POSTGRES_DATABASE}`
-- Kullanıcı: `${POSTGRES_USER}`
-- Şifre: `${POSTGRES_PASSWORD}`
-- Port: `${POSTGRES_PORT}`
-
-## Geliştirme
-
-1. Container'ları başlatın:
+2. Proje dizinine gidin
 ```bash
-docker-compose up -d
+cd user-service
 ```
 
-2. PHP container'ına bağlanın:
+3. .env dosyasını oluşturun
 ```bash
-docker exec -it phpserver_product-service bash
+cp .env.example .env
 ```
 
-3. Composer bağımlılıklarını yükleyin:
+4. Kaynak kod dizinine gidin
+```bash
+cd src/
+```
+
+5. .env dosyasını oluşturun
+```bash
+cp .env.example .env
+```
+
+6. Ana dizinine gidin ve Docker Compose ile servisi başlatın
+```bash
+cd .. && docker-compose up -d
+```
+
+7. Container içerisine girin
+```bash
+docker exec -it phpserver_user_service
+```
+8. Composer ile bağımlılıkları yükleyin
 ```bash
 composer install
 ```
 
-4. Migration'ları çalıştırın:
-```bash
-php artisan migrate
-```
+## 📝 Notlar
 
-## Notlar
-
-- Tüm container'lar `shared_network` adlı bir Docker network'ünde çalışır
-- Veritabanı verileri `./data/postgresql_data` dizininde saklanır
+- Swagger dökümantasyonu için [http://localhost:8081/api/documentation](http://localhost:8081/api/documentation) adresini ziyaret edebilirsiniz.
