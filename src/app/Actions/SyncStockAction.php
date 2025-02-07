@@ -6,7 +6,6 @@ use App\Data\ProductDTO;
 use App\Data\SyncProductStockDTO;
 use App\Enums\QueueEnum;
 use App\Jobs\SyncStockJob;
-use Illuminate\Support\Facades\Log;
 
 class SyncStockAction
 {
