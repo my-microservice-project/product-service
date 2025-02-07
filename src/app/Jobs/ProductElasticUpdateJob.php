@@ -33,7 +33,7 @@ class ProductElasticUpdateJob implements ShouldQueue
     {
         /** @var ProductService $productService */
         $productService = app(ProductService::class);
-        $product = $productService->getProductById($this->productId);
+        $product = $productService->getProduct($this->productId);
         $updateElasticSearchAction->execute($product);
     }
 }

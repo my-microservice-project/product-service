@@ -15,7 +15,7 @@ class ProductSearchRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'query'    => 'required|string|min:2',
+            'keyword'    => 'required|string|min:2',
             'category' => 'nullable|integer',
             'min_price' => 'nullable|numeric|min:0',
             'max_price' => 'nullable|numeric|min:0',

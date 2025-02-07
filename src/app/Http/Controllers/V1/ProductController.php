@@ -52,7 +52,7 @@ class ProductController extends Controller
         tags: ["Product"],
         parameters: [
             new OA\Parameter(
-                name: "query",
+                name: "keyword",
                 description: "Performs a keyword search",
                 in: "query",
                 required: true,

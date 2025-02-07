@@ -68,7 +68,7 @@
                 "operationId": "9d491d9a769ba3d2f650a1fd8f07f0f3",
                 "parameters": [
                     {
-                        "name": "query",
+                        "name": "keyword",
                         "in": "query",
                         "description": "Performs a keyword search",
                         "required": true,
@@ -229,7 +229,7 @@
                 "title": "Product Search Data Transfer Object",
                 "description": "Data structure for searching products",
                 "properties": {
-                    "query": {
+                    "keyword": {
                         "description": "Keyword to search for in product names or descriptions.",
                         "type": "string",
                         "example": "iPhone"

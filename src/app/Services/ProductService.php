@@ -11,12 +11,14 @@ use App\Repositories\Contracts\ProductRepositoryInterface;
 use App\Repositories\Contracts\ProductSearchRepositoryInterface;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\Log;
 use Spatie\LaravelData\DataCollection;
 
 class ProductService
 {
-    public function __construct(protected ProductRepositoryInterface $productRepository, protected ProductSearchRepositoryInterface $productSearchRepository)
+    public function __construct(
+        protected ProductRepositoryInterface $productRepository,
+        protected ProductSearchRepositoryInterface $productSearchRepository
+    )
     {}
 
     public function enqueueProducts(DataCollection $products): void
@@ -28,10 +30,10 @@ class ProductService
 
     public function search(ProductSearchDTO $toDTO): Collection
     {
-        return $this->productSearchRepository->search($toDTO);
+        return $this->productSearchRepository->findProducts($toDTO);
     }
 
-    public function getProductById(int $productId): ProductDTO
+    public function getProduct(int $productId): ProductDTO
     {
         $product = $this->productRepository->getProductById($productId);
         $product->stock = Cache::get(CacheEnum::STOCK->getValue().$product->id, 0);

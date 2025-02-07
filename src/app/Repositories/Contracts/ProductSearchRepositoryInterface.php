@@ -7,5 +7,5 @@ use Illuminate\Support\Collection;
 
 interface ProductSearchRepositoryInterface
 {
-    public function search(ProductSearchDTO $dto): Collection;
+    public function findProducts(ProductSearchDTO $dto): Collection;
 }

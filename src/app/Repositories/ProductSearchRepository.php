@@ -19,7 +19,7 @@ class ProductSearchRepository implements ProductSearchRepositoryInterface
      * @throws ClientResponseException
      * @throws ServerResponseException
      */
-    public function search(ProductSearchDTO $dto): Collection
+    public function findProducts(ProductSearchDTO $dto): Collection
     {
         $query = $this->buildQuery($dto);
         $response = $this->elasticSearchManager->search($query);
@@ -38,7 +38,7 @@ class ProductSearchRepository implements ProductSearchRepositoryInterface
                 'query' => [
                     'bool' => [
                         'must' => array_filter([
-                            $this->getTextSearchClause($dto->query),
+                            $this->getTextSearchClause($dto->keyword),
                             ...$this->getOptionalFilters($dto)
                         ])
                     ]

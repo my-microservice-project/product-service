@@ -5,8 +5,6 @@ namespace App\Actions;
 use App\Data\ProductDTO;
 use App\Data\ProductElasticDTO;
 use App\Enums\ElasticIndexEnum;
-use App\Enums\QueueEnum;
-use App\Jobs\ProductElasticUpdateJob;
 use App\Managers\ElasticSearchManager;
 use Elastic\Elasticsearch\Exception\{ClientResponseException, MissingParameterException, ServerResponseException};
 

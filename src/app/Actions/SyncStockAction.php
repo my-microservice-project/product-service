@@ -18,8 +18,6 @@ class SyncStockAction
                 $productDTO->stock
             ))->toArray()
         )->onQueue(QueueEnum::SYNC_STOCK->getValue());
-
-        Log::info('Stock sync job dispatched', ['product_id' => $productDTO->id]);
     }
 
 }
