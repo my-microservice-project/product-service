@@ -2,30 +2,30 @@
 
 namespace App\Data;
 
-use OpenApi\Annotations as OA;
+use OpenApi\Attributes as OA;
 use Spatie\LaravelData\Data;
 use Spatie\LaravelData\DataCollection;
 
-/**
- * @OA\Schema(
- *     schema="ProductDTO",
- *     type="object",
- *     title="Product Data Transfer Object",
- *     description="Product information",
- *     @OA\Property(property="id", type="integer", example=28, nullable=true, description="Ürünün benzersiz kimliği, opsiyonel"),
- *     @OA\Property(property="name", type="string", example="iPhone 15 Pro", nullable=true, description="Ürün adı. Eğer yoksa 'description' veya varsayılan değer kullanılır."),
- *     @OA\Property(property="description", type="string", example="Apple'ın en son modeli", nullable=true, description="Ürünün açıklaması. Eğer 'name' yoksa bu değer kullanılabilir."),
- *     @OA\Property(property="category", type="integer", example=1, description="Ürünün ait olduğu kategori ID'si"),
- *     @OA\Property(property="price", type="number", format="float", example=1299.99, description="Ürünün fiyatı"),
- *     @OA\Property(property="stock", type="integer", example=50, description="Ürünün stok adedi")
- * )
- */
+#[OA\Schema(
+    schema: "ProductDTO",
+    title: "Product Data Transfer Object",
+    description: "Product information",
+    properties: [
+        new OA\Property(property: "id", type: "integer", example: 28, nullable: true, description: "Unique identifier of the product, optional."),
+        new OA\Property(property: "name", type: "string", example: "iPhone 15 Pro", nullable: true, description: "Product name. If not provided, 'description' or a default value is used."),
+        new OA\Property(property: "description", type: "string", example: "Apple's latest model", nullable: true, description: "Product description. If 'name' is missing, this value is used."),
+        new OA\Property(property: "category", type: "integer", example: 1, description: "Category ID of the product."),
+        new OA\Property(property: "price", type: "number", format: "float", example: 1299.99, description: "Price of the product."),
+        new OA\Property(property: "stock", type: "integer", example: 50, description: "Stock quantity of the product.")
+    ],
+    type: "object"
+)]
 final class ProductDTO extends Data
 {
     public function __construct(
         public int $category,
         public float $price,
-        public ?int $stock=0,
+        public ?int $stock = 0,
         public ?string $name = null,
         public ?string $description = null,
         public ?int $id = null

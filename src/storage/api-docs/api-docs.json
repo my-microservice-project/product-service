@@ -169,36 +169,117 @@
                 "description": "Product information",
                 "properties": {
                     "id": {
-                        "description": "Ürünün benzersiz kimliği, opsiyonel",
+                        "description": "Unique identifier of the product, optional.",
                         "type": "integer",
                         "example": 28,
                         "nullable": true
                     },
                     "name": {
-                        "description": "Ürün adı. Eğer yoksa 'description' veya varsayılan değer kullanılır.",
+                        "description": "Product name. If not provided, 'description' or a default value is used.",
                         "type": "string",
                         "example": "iPhone 15 Pro",
                         "nullable": true
                     },
                     "description": {
-                        "description": "Ürünün açıklaması. Eğer 'name' yoksa bu değer kullanılabilir.",
+                        "description": "Product description. If 'name' is missing, this value is used.",
                         "type": "string",
-                        "example": "Apple'ın en son modeli",
+                        "example": "Apple's latest model",
                         "nullable": true
                     },
                     "category": {
-                        "description": "Ürünün ait olduğu kategori ID'si",
+                        "description": "Category ID of the product.",
                         "type": "integer",
                         "example": 1
                     },
                     "price": {
-                        "description": "Ürünün fiyatı",
+                        "description": "Price of the product.",
                         "type": "number",
                         "format": "float",
                         "example": 1299.99
                     },
                     "stock": {
-                        "description": "Ürünün stok adedi",
+                        "description": "Stock quantity of the product.",
+                        "type": "integer",
+                        "example": 50
+                    }
+                },
+                "type": "object"
+            },
+            "ProductElasticDTO": {
+                "title": "Product Elastic Data Transfer Object",
+                "description": "Data structure for indexing a product in Elasticsearch",
+                "properties": {
+                    "index": {
+                        "description": "Elasticsearch index name.",
+                        "type": "string",
+                        "example": "products"
+                    },
+                    "id": {
+                        "description": "Unique identifier for the product document in Elasticsearch.",
+                        "type": "string",
+                        "example": "abc123"
+                    },
+                    "body": {
+                        "$ref": "#/components/schemas/ProductDTO"
+                    }
+                },
+                "type": "object"
+            },
+            "ProductSearchDTO": {
+                "title": "Product Search Data Transfer Object",
+                "description": "Data structure for searching products",
+                "properties": {
+                    "query": {
+                        "description": "Keyword to search for in product names or descriptions.",
+                        "type": "string",
+                        "example": "iPhone"
+                    },
+                    "category": {
+                        "description": "Filter by category ID.",
+                        "type": "integer",
+                        "example": 1,
+                        "nullable": true
+                    },
+                    "min_price": {
+                        "description": "Minimum price filter.",
+                        "type": "number",
+                        "format": "float",
+                        "example": 1000,
+                        "nullable": true
+                    },
+                    "max_price": {
+                        "description": "Maximum price filter.",
+                        "type": "number",
+                        "format": "float",
+                        "example": 5000,
+                        "nullable": true
+                    },
+                    "min_stock": {
+                        "description": "Minimum stock quantity filter.",
+                        "type": "integer",
+                        "example": 10,
+                        "nullable": true
+                    },
+                    "max_stock": {
+                        "description": "Maximum stock quantity filter.",
+                        "type": "integer",
+                        "example": 100,
+                        "nullable": true
+                    }
+                },
+                "type": "object"
+            },
+            "SyncProductStockDTO": {
+                "title": "Sync Product Stock Data Transfer Object",
+                "description": "Data structure for synchronizing product stock",
+                "properties": {
+                    "product_id": {
+                        "description": "Unique identifier of the product.",
+                        "type": "integer",
+                        "example": 101
+                    },
+                    "stock": {
+                        "description": "Updated stock quantity of the product.",
                         "type": "integer",
                         "example": 50
                     }
