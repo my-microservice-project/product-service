@@ -1,4 +1,4 @@
-# User Service
+# Product Service
 
 Bu servis, kullanıcı kimlik doğrulama işlemlerini yönetmek için cache based tasarlanmış bir mikroservistir.
 
@@ -9,17 +9,19 @@ Bu servis, kullanıcı kimlik doğrulama işlemlerini yönetmek için cache base
 - Docker
 - Docker Compose
 - Redis
+- Elasticsearch
+- PostgreSQL
 
 ### Kurulum
 
 1. Projeyi klonlayın
 ```bash
-git clone https://github.com/my-microservice-project/user-service
+git clone https://github.com/my-microservice-project/product-service
 ```
 
 2. Proje dizinine gidin
 ```bash
-cd user-service
+cd product-service
 ```
 
 3. .env dosyasını oluşturun
@@ -44,7 +46,7 @@ cd .. && docker-compose up -d
 
 7. Container içerisine girin
 ```bash
-docker exec -it phpserver_user_service
+docker exec -it phpserver_product_service
 ```
 8. Composer ile bağımlılıkları yükleyin
 ```bash
