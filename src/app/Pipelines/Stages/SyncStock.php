@@ -8,9 +8,14 @@ use Closure;
 
 class SyncStock
 {
-    public function handle(ProductDTO $productDTO, SyncStockAction $action, Closure $next): ProductDTO
+    public function __construct(
+        protected SyncStockAction $action
+    )
+    {}
+
+    public function handle(ProductDTO $productDTO, Closure $next): ProductDTO
     {
-        $action->execute($productDTO);
+        $this->action->execute($productDTO);
         return $next($productDTO);
     }
 }
