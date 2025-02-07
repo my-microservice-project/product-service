@@ -1,6 +1,6 @@
 # Product Service
 
-Bu servis, kullanıcı kimlik doğrulama işlemlerini yönetmek için cache based tasarlanmış bir mikroservistir.
+Bu servis, ürün işlemlerini yönetmek için tasarlanmış bir mikroservistir.
 
 ## 🚀 Başlangıç
 
