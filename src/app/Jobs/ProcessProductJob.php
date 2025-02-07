@@ -2,15 +2,14 @@
 
 namespace App\Jobs;
 
-use App\Data\ProductDTO;
 use App\Pipelines\ProductUpdateOrCreatePipeline;
-use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Pipeline\Pipeline;
-use Illuminate\Support\Facades\Log;
+use Illuminate\Bus\Queueable;
+use App\Data\ProductDTO;
 
 class ProcessProductJob implements ShouldQueue
 {

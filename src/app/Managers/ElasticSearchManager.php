@@ -2,11 +2,11 @@
 
 namespace App\Managers;
 
-use App\Clients\ElasticSearchClient;
-use App\Data\ProductElasticDTO;
-use Elastic\Elasticsearch\Exception\ClientResponseException;
 use Elastic\Elasticsearch\Exception\MissingParameterException;
 use Elastic\Elasticsearch\Exception\ServerResponseException;
+use Elastic\Elasticsearch\Exception\ClientResponseException;
+use App\Clients\ElasticSearchClient;
+use App\Data\ProductElasticDTO;
 
 class ElasticSearchManager
 {

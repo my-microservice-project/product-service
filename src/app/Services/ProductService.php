@@ -2,16 +2,17 @@
 
 namespace App\Services;
 
-use App\Data\ProductDTO;
-use App\Data\ProductSearchDTO;
-use App\Enums\CacheEnum;
-use App\Enums\QueueEnum;
-use App\Jobs\ProcessProductJob;
-use App\Repositories\Contracts\ProductRepositoryInterface;
+
 use App\Repositories\Contracts\ProductSearchRepositoryInterface;
-use Illuminate\Support\Collection;
+use App\Repositories\Contracts\ProductRepositoryInterface;
 use Illuminate\Support\Facades\Cache;
 use Spatie\LaravelData\DataCollection;
+use App\Data\ProductSearchDTO;
+use App\Jobs\ProcessProductJob;
+use Illuminate\Support\Collection;
+use App\Enums\CacheEnum;
+use App\Enums\QueueEnum;
+use App\Data\ProductDTO;
 
 class ProductService
 {

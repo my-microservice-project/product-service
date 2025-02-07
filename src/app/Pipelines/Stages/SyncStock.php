@@ -8,7 +8,6 @@ use Closure;
 
 class SyncStock
 {
-
     public function handle(ProductDTO $productDTO, SyncStockAction $action, Closure $next): ProductDTO
     {
         $action->execute($productDTO);

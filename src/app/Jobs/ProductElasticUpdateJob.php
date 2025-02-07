@@ -2,19 +2,13 @@
 
 namespace App\Jobs;
 
-use App\Actions\UpdateElasticSearchAction;
-use App\Data\ProductDTO;
-use App\Data\ProductElasticDTO;
-use App\Enums\ElasticIndexEnum;
-use App\Managers\ElasticSearchManager;
-use App\Services\ProductService;
-use Elastic\Elasticsearch\Exception\ClientResponseException;
-use Elastic\Elasticsearch\Exception\MissingParameterException;
-use Elastic\Elasticsearch\Exception\ServerResponseException;
+use Elastic\Elasticsearch\Exception\{ClientResponseException, MissingParameterException, ServerResponseException};
 use Illuminate\Contracts\Queue\ShouldQueue;
+use App\Actions\UpdateElasticSearchAction;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Foundation\Queue\Queueable;
 use Illuminate\Queue\InteractsWithQueue;
+use App\Services\ProductService;
 
 class ProductElasticUpdateJob implements ShouldQueue
 {
