@@ -44,7 +44,7 @@ class ProductService
 
     public function getProductByIdOnCache(int $productId): ProductDTO
     {
-        $cachedProduct = Cache::remember(CacheEnum::PRODUCT->getValue() . $productId, now()->addMinutes(5), function () use ($productId) {
+        $cachedProduct = Cache::remember(CacheEnum::PRODUCT->getValue() . $productId, now(), function () use ($productId) {
             return $this->getProduct($productId)->toArray();
         });
 
