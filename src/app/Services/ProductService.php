@@ -42,8 +42,10 @@ class ProductService
         return $product;
     }
 
-    public function getProductById(int $id): ProductDTO
+    public function getProductByIdOnCache(int $productId): ProductDTO
     {
-        return $this->productRepository->getProductById($id);
+        return Cache::remember(CacheEnum::PRODUCT->getValue().$productId, now()->addMinutes(5), function () use ($productId) {
+            return $this->getProduct($productId);
+        });
     }
 }

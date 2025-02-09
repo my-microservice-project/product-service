@@ -122,7 +122,7 @@ class ProductController extends Controller
 
     public function show(int $id): ProductResource
     {
-        $product = $this->productService->getProductById($id);
+        $product = $this->productService->getProductByIdOnCache($id);
 
         return ProductResource::make($product);
     }
