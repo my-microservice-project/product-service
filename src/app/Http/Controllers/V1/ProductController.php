@@ -119,4 +119,11 @@ class ProductController extends Controller
 
         return $this->successResponse(__('messages.search_results'), ProductResource::collection($products), ResponseAlias::HTTP_OK);
     }
+
+    public function show(int $id): ProductResource
+    {
+        $product = $this->productService->getProductById($id);
+
+        return ProductResource::make($product);
+    }
 }

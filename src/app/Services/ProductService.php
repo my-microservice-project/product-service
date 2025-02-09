@@ -41,4 +41,9 @@ class ProductService
 
         return $product;
     }
+
+    public function getProductById(int $id): ProductDTO
+    {
+        return $this->productRepository->getProductById($id);
+    }
 }
